@@ -1,30 +1,30 @@
 # Compiler
-CXX = c++
+CXX = g++
 
 # Compiler flags
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-# Source file
-SRC = megaphone.cpp
+# Source files
+SRC = tests.cpp Account.cpp
 
-# Object file
-OBJ = megaphone.o
+# Object files
+OBJ = $(SRC:.cpp=.o)
 
 # Output executable
-EXEC = megaphone
+EXEC = Account
 
 # Default target
 all: $(EXEC)
 
 # Ensure the build directory exists
 $(EXEC): $(OBJ)
-	$(CXX) $(OBJ) -o $@
+	$(CXX) $(OBJ) -o $(EXEC)
 
 # Compile source file to object file
-$(OBJ): $(SRC)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean up object file
+# Clean up object files
 clean:
 	rm -f $(OBJ)
 
