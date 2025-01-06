@@ -1,15 +1,25 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 
-bool isInteger(const std::string& str) {
-	if (str.empty())
-		return (false);
-	for (size_t i = 0; i < str.size(); i++)
+bool isInteger(const std::string& str)
+{
+	for (size_t i = 1; i < str.size(); i++)
 	{
 		char c = str[i];
 		if (!std::isdigit(c))
 			return (false);
 	}
+	return (true);
+}
+
+bool isPhoneNumber(const std::string& str)
+{
+	if (str.empty())
+		return (false);
+	if (!(str[0] == '+' || std::isdigit(str[0])))
+		return (false);
+	if (!isInteger(str))
+		return (false);
 	return (true);
 }
 
@@ -29,38 +39,37 @@ int main() {
 		std::cin >> command;
 		if (!std::cin)
 			return(1);
-		clearAndIgnoreInput();
+		//clearAndIgnoreInput();
 		if (command == "ADD")
 		{
 			Contact contact;
 			std::string input;
 			std::cout << "First Name: ";
-			std::cin >> input;
+			std::getline(std::cin >> std::ws, input);
 			if (!std::cin)
 				return(1);
 			contact.setFirstName(input);
-			clearAndIgnoreInput();
 			std::cout << "Last Name: ";
-			std::cin >> input;
+			std::getline(std::cin >> std::ws, input);
 			if (!std::cin)
 				return(1);
 			contact.setLastName(input);
-			clearAndIgnoreInput();
 			std::cout << "Phone Number: ";
 			std::cin >> input;
-			while (!isInteger(input))
+			if (!std::cin)
+				return(1);
+			while (!isPhoneNumber(input))
 			{
 				std::cout << "Please enter a valid number !" << std::endl;
 				clearAndIgnoreInput();
 				std::cin >> input;
+				if (!std::cin)
+					return(1);
 			}
-			if (!std::cin)
-				return(1);
 			contact.setPhoneNumber(input);
 			clearAndIgnoreInput();
 			std::cout << "Darkest Secret: ";
-			std::getline(std::cin, input);
-			if (!std::cin)
+			if (!std::getline(std::cin >> std::ws, input))
 				return(1);
 			contact.setDarkestSecret(input);
 			phoneBook.addContact(contact);
