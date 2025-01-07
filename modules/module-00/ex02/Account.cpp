@@ -29,11 +29,11 @@ int	Account::getNbWithdrawals()
 
 void	Account::displayAccountsInfos()
 {
-	std::cout << std::endl << "	Accounts information" << std::endl;
-	std::cout << "	Number total of accounts | " << _nbAccounts << std::endl;
-	std::cout << "	Total Amount | " << _totalAmount << std::endl;
-	std::cout << "	Number of Deposits | " << _totalNbDeposits << std::endl;
-	std::cout << "	Number with drawals | " << _totalNbWithdrawals << std::endl;
+	_displayTimestamp();
+	std::cout << " accounts:\33[0;34m" << _nbAccounts
+			 << "\033[0m;total:\33[0;34m" << _totalAmount
+			 << "\033[0m;deposits:\33[0;34m" << _totalNbDeposits
+			 << "\033[0m;withdrawals:\33[0;34m" << _totalNbWithdrawals << "\033[0m" << std::endl;
 }
 
 Account::Account(int initial_deposit)
@@ -45,45 +45,54 @@ Account::Account(int initial_deposit)
 	_nbAccounts++;
 	_totalAmount += initial_deposit;
 
-	std::cout << "	Creation of account" << std::endl;
 	_displayTimestamp();
-	std::cout << "	Index | " <<  _accountIndex << std::endl;
-	std::cout << "	Account balance | " <<  _amount << std::endl << std::endl;
+	std::cout << " index:\33[0;34m" <<  _accountIndex
+				<< "\033[0m;amount:\33[0;34m" <<  _amount
+				<< "\033[0m;created" <<  std::endl;
 }
 
 Account::~Account(void)
 {
-	std::cout << std::endl << "	Closing account" << std::endl;
 	_displayTimestamp();
-	std::cout << "	Index | " <<  _accountIndex << std::endl;
-	std::cout << "	Account balance | " <<  _amount << std::endl;
+	std::cout << " index:\33[0;34m" <<  _accountIndex
+				<< "\033[0m;amount:\33[0;34m" <<  _amount
+				<< "\033[0m;closed" <<  std::endl;	
 }
 
 void	Account::makeDeposit(int deposit)
 {
-	std::cout << std::endl << "	Account number " << _accountIndex
-				<< " make a deposit of " << deposit << std::endl;
-	_displayTimestamp();
 	_totalAmount += deposit;
 	_totalNbDeposits++;
 	_amount += deposit;
 	_nbDeposits++;
+	_displayTimestamp();
+	std::cout << " index:\33[0;34m" <<  _accountIndex
+			<< "\033[0m;p_amount:\33[0;34m" <<  _amount - deposit
+			<< "\033[0m;deposits:\33[0;34m" <<  deposit
+			<< "\033[0m;amount:\33[0;34m" <<  _amount 
+			<< "\033[0m;nb_deposits:\33[0;34m" <<  _nbDeposits
+			<< "\033[0m" <<  std::endl;
 }
 
 bool	Account::makeWithdrawal(int withdrawal)
 {
-	std::cout << std::endl << "	Account number " << _accountIndex
-				<< " withdraws an amount of " << withdrawal << std::endl;
 	_displayTimestamp();
 	if (withdrawal > _amount)
 	{
-		std::cout << "		Insufficient balance" << std::endl;
-		std::cout << "		Maximum withdrawal allowed : " << _amount << std::endl;
+		std::cout << " index:\33[0;34m" <<  _accountIndex
+				<< "\033[0m;p_amount:\33[0;34m" <<  _amount
+				<< "\033[0m;withdrawal:refused" <<  std::endl;	
 		return (false);
 	}
 	_totalAmount -= withdrawal;
 	_amount -= withdrawal;
 	_nbWithdrawals++;
+	std::cout << " index:\33[0;34m" <<  _accountIndex
+			<< "\033[0m;p_amount:\33[0;34m" <<  _amount + withdrawal
+			<< "\033[0m;withdrawal:\33[0;34m" <<  withdrawal
+			<< "\033[0m;amount:\33[0;34m" <<  _amount
+			<< "\033[0m;nb_withdrawals:\33[0;34m" <<  _nbWithdrawals
+			<< "\033[0m" <<  std::endl;	
 	return (true);
 }
 int		Account::checkAmount() const
@@ -93,17 +102,23 @@ int		Account::checkAmount() const
 
 void	Account::displayStatus() const
 {
-	std::cout << std::endl << "	Account status " << std::endl;
-	std::cout << "	Index | " << _accountIndex << std::endl;
-	std::cout << "	Amount | " << _amount << std::endl;
-	std::cout << "	Number of deposits made | " << _nbDeposits << std::endl;
-	std::cout << "	Number of withdrawals made | " << _nbWithdrawals << std::endl;
+	_displayTimestamp();
+	std::cout << " index:\33[0;34m" << _accountIndex
+			 << "\033[0m;amount:\33[0;34m" << _amount
+			 << "\033[0m;deposits:\33[0;34m" << _nbDeposits
+			 << "\033[0m;withdrawals:\33[0;34m" << _nbWithdrawals 
+			 << "\033[0m" << std::endl;
 }
 
-void	Account::_displayTimestamp()
+void    Account::_displayTimestamp(void)
 {
-	time_t timestamp;
-	time(&timestamp);
-	std::cout << "	Date | " << ctime(&timestamp);
+	time_t rawtime;
+	struct tm * timeinfo;
+	char    ptr[18];
+
+	time(&rawtime);
+	timeinfo = localtime (&rawtime);
+	strftime(ptr, 18, "[%Y%m%C_%H%M%S]", timeinfo);
+	std::cout << ptr;
 }
 
