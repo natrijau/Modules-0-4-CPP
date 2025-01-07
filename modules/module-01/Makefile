@@ -4,12 +4,12 @@ SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJ = main.o Zombie.o newZombie.o randomChump.o
 EXEC = zombie
 
-all: $(EXEC);
+all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	$(CXX) $(OBJ) -o $@
 
-$(OBJ): $(SRC)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
@@ -21,4 +21,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-g
