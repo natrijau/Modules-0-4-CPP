@@ -1,13 +1,12 @@
 #include "Harl.hpp"
 
-int main()
+int main(int ac, char **av)
 {
 	Harl harl;
 
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-	harl.complain("UNKNOWN"); // Cas inconnu pour tester le comportement
+	if(ac != 2)
+		std::cout << "Please enter a single argument" << std::endl;
+	else
+		harl.complain(av[1]);
 	return (0);
 }
