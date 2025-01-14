@@ -84,7 +84,8 @@ int main(int ac, char **av)
 		i = line.find(s1, i);
 		while (i <= line.length() )
 		{
-			line.replace(i, s1.length(), s2);
+			line.erase(i, s1.length());
+			line.insert(i, s2);
 			i += s2.length();
 			i = line.find(s1, i);
 		}
