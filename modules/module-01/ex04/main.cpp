@@ -88,7 +88,7 @@ int main(int ac, char **av)
 			line.insert(i, s2);
 			i += s2.length();
 			i = line.find(s1, i);
-		}
+		}	
 		outputFile << line << std::endl;
 	}
 	inputFile.close();
