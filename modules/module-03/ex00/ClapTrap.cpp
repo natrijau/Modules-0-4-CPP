@@ -18,18 +18,18 @@ void	ClapTrap::attack(const std::string& target)
 	std::cout << "ClapTrap " << _name << " cannot attack, no energy or hit points left!" << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amoun)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	_hitPoint -= amoun;
+	_hitPoint -= amount;
 
-	std::cout << "ClapTrap " << _name << " take " << amoun << " damage!" << std::endl;
+	std::cout << "ClapTrap " << _name << " take " << amount << " damage!" << std::endl;
 }
 
-void	ClapTrap::beRepaired(unsigned int amoun)
+void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energiePoint >= 1)
 	{
-		_hitPoint += amoun;	
+		_hitPoint += amount;	
 		if (_hitPoint >= 10)
 			_hitPoint = 10;
 		_energiePoint--;
