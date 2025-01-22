@@ -9,9 +9,9 @@ class   Fixed
 
 		int         		_stockPointNumber;
 		static const int	_stockBits = 8;
-	
+
 	public:
-	
+
 		Fixed();
 		Fixed(const int toConvert);
 		Fixed(const float toConvert);

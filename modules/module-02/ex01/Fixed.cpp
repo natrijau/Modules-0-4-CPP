@@ -1,16 +1,26 @@
 #include    "Fixed.hpp"
 #include	<cmath>
 
+/*
+	Étapes pour convertir un entier en virgule fixe
+	1. Définir le nombre de bits fractionnaires
+	Le nombre de bits alloués à la partie fractionnaire (souvent appelé _stockBits) détermine la précision de la valeur.
+
+	2. Multiplier par 2^{\text{_stockBits}} equivaut a 1 << _stockBits
+	En multipliant l'entier par cette valeur, vous "décalez" sa valeur pour intégrer une partie fractionnaire.
+*/
+
 Fixed::Fixed()
 : _stockPointNumber(0){}
 
 Fixed::Fixed(int const toConvert)
 {
-	toConvert << _stockPointNumber;
+	_stockPointNumber = toConvert << _stockBits;
 }
 
 Fixed::Fixed(float const toConvert)
 {
+	_stockPointNumber = roundf(toConvert * (1 << _stockBits));
 }
 
 Fixed::Fixed(const Fixed& copy)
@@ -18,13 +28,12 @@ Fixed::Fixed(const Fixed& copy)
 
 float	Fixed::toFloat( void ) const
 {
-	std::cout << "Converts fixed point value to floating point number" << std::endl;
-	return (roundf(_stockPointNumber));
+	return ((float)(_stockPointNumber) / (1 << _stockBits));
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (_stockPointNumber << _stockBits);
+	return (_stockPointNumber >> _stockBits);
 }
 
 int Fixed::getRawBits(void) const
@@ -46,7 +55,7 @@ Fixed &Fixed::operator=(const Fixed& fix)
 
 std::ostream &operator<<( std::ostream & o, Fixed const & toInsert)
 {
-	o << toInsert;
+	o << toInsert.toFloat();
 	return (o);
 }
 
