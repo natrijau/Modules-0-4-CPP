@@ -47,10 +47,22 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed	surfacePbc = surface(point, b, c);
 	
 	allPos(surfaceAbc, surfacePab, surfacePac, surfacePbc);
-	//std::cout << surfaceAbc << std::endl;
-	//std::cout << surfacePab << std::endl;
-	//std::cout << surfacePac << std::endl;
-	//std::cout << surfacePbc << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "Le principe est de calculer la somme des surfaces des triangles qui ont en communs le point P.";
+	std::cout << "Ici PAB, PBC et PCA." << std::endl;
+	std::cout << "On peut ensuite comparer cette somme avec la surface du triangle principale ABC." << std::endl;
+	std::cout << "Si la somme des triangles(P...) >= ABC le point n'est pas dans le triangle" << std::endl;
+	std::cout << "Si la somme des triangles(P...) < ABC le point est pas dans le triangle" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "La surface du triangle PAB : " <<surfacePab << std::endl;
+	std::cout << "La surface du triangle PAC : " <<surfacePac << std::endl;
+	std::cout << "La surface du triangle PBC : " <<surfacePbc << std::endl;
+	std::cout << "La somme des triangles(P...) : " << (surfacePab + surfacePac + surfacePbc) << std::endl;
+	std::cout << "La surface du triangle ABC : " << surfaceAbc << std::endl;
+	std::cout << std::endl;
+
 	if (surfacePab == 0 || surfacePac == 0 || surfacePbc == 0)
 	{
 		std::cout << "Le point est sur un des segments du triangle" << std::endl;

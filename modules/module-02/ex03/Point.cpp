@@ -9,6 +9,7 @@ Point::Point(const float a, const float b)
 Point::Point(const Point& copy)
 : _x(copy._x), _y(copy._y){}
 
+
 Fixed	Point::getPointValueX() const
 {
 	return (this->_x);
