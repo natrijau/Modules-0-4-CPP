@@ -19,7 +19,7 @@ class   Point
 
 		Fixed	getPointValueX() const;
 		Fixed	getPointValueY() const;
-		//Arithmetiques
+		
 		Point &operator=(const Point& number);
 };
 

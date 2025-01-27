@@ -18,14 +18,14 @@ class   Fixed
 		Fixed(const Fixed& copy);
 		~Fixed();
 
-		//Arithmetiques
+		//Arithmetic
 		Fixed &operator=(const Fixed& number);
 		Fixed operator+(const Fixed& number) const;
 		Fixed operator-(const Fixed& number) const;
 		Fixed operator*(const Fixed& number) const;
 		Fixed operator/(const Fixed& number) const;
 		
-		//Comparaison renvoyant vrai ou faux
+		//Comparison returning true or false
 		bool operator>(const Fixed& number) const;
 		bool operator<(const Fixed& number) const;
 		bool operator>=(const Fixed& number) const;
@@ -33,13 +33,13 @@ class   Fixed
 		bool operator==(const Fixed& number) const;
 		bool operator!=(const Fixed& number) const;
 
-		//incrémentation et décrémentation
+		//increment and decrement
 		Fixed &operator++();
 		Fixed operator++(int number);
 		Fixed &operator--();
 		Fixed operator--(int number);
 
-		// Méthodes statiques min et max
+		// Static min and max methods
 		static Fixed min(Fixed& a, Fixed& b);
 		static Fixed min(const Fixed& a,const Fixed& b);
 		static Fixed max(Fixed& a, Fixed& b);

@@ -2,34 +2,40 @@
 #include	<cmath>
 
 Fixed::Fixed()
-: _stockPointNumber(0){}
+: _stockPointNumber(0){
+	std::cout << "Constructor Fixed call" << std::endl;
+}
 
 /*
-	Étapes pour convertir un entier en virgule fixe
-	1. Définir le nombre de bits fractionnaires
-	Le nombre de bits alloués à la partie fractionnaire (souvent appelé _stockBits) détermine la précision de la valeur.
+Steps to convert an integer to fixed point
+1. set the number of fractional bits
+The number of bits assigned to the fractional part (often called _stockBits) determines the precision of the value.
 
-	2. Multiplier par 2^{\text{_stockBits}} equivaut a 1 << _stockBits
-	En multipliant l'entier par cette valeur, vous "décalez" sa valeur pour intégrer une partie fractionnaire.
+2. Multiplier by 2^{\text{_stockBits}} equals 1 << _stockBits
+By multiplying the integer by this value, you "shift" its value to include a fractional part.
 */
 
-//constructeur prenant un entier constant en 
-//paramètre et qui convertit celui-ci en virgule fixe
+//constructor taking a constant integer as a
+//parameter and converting it to a fixed point
 Fixed::Fixed(int const toConvert)
 {
+	std::cout << "Constructor Fixed with const integer call" << std::endl;
 	_stockPointNumber = toConvert * (1 << _stockBits);
 }
 
 
-//constructeur prenant un float constant en 
-//paramètre et qui convertit celui-ci en virgule fixe
+//constructor taking a float constant as a
+//parameter and converting it to a fixed point
 Fixed::Fixed(float const toConvert)
 {
+	std::cout << "Constructor Fixed with const float call" << std::endl;
 	_stockPointNumber = roundf(toConvert * (1 << _stockBits));
 }
 
 Fixed::Fixed(const Fixed& copy)
-: _stockPointNumber(copy._stockPointNumber){}
+: _stockPointNumber(copy._stockPointNumber){
+	std::cout << "Copy Fixed call" << std::endl;
+}
 
 float	Fixed::toFloat( void ) const
 {
@@ -127,31 +133,31 @@ bool	Fixed::operator!=(const Fixed& fix) const
 	return (false);	
 }
 
-//pre incrementation
+//pre increment
 Fixed	&Fixed::operator++(void)
 {
-	_stockPointNumber += (1 << _stockBits);
+	_stockPointNumber++;
 	return (*this);
 }
 
-//post incrementation
+//post increment
 Fixed	Fixed::operator++(int number)
 {
 	(void)number;
-	//copy de letat actuelle de la classe
+	//copy the current state of the class
 	Fixed copy(*this);
    	++*this;
-	return (copy); //return ancienne valeur avant incrementation
+	return (copy); //return old value before increment
 }
 
-//pre decrementation
+//pre decrement
 Fixed	&Fixed::operator--(void)
 {
-	_stockPointNumber -= (1 << _stockBits);
+	_stockPointNumber--;
 	return (*this);
 }
 
-//post decrementation
+//post decrement
 Fixed	Fixed::operator--(int number)
 {
 	(void)number;
@@ -194,4 +200,6 @@ std::ostream & operator<<( std::ostream & o, Fixed const & toInsert)
 	return (o);
 }
 
-Fixed::~Fixed(){}
+Fixed::~Fixed(){
+	std::cout << "Destructor Fixed call" << std::endl;
+}

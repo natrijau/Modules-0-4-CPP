@@ -26,7 +26,7 @@ Point &Point::operator=(const Point& point)
 	{
 		//this->_x.setRawBits(point._x.getRawBits());
 		//this->_y.setRawBits(point._y.getRawBits());
-		//ne fonctionne pas car valeur en const non reaffectable
+		//does not work because the value in const cannot be reassigned
 	}
 	return (*this);
 }
