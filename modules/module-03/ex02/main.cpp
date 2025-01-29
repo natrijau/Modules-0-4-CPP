@@ -20,7 +20,7 @@ int main()
 	scavtrap.gardeGate();
 
 	FragTrap fragtrap("BIG BOSS");
-	fragtrap.takeDamage(100);
+	fragtrap.takeDamage(3520651651);
 	fragtrap.attack("ennemy");
 	fragtrap.beRepaired(150);
 	fragtrap.highFivesGuys();

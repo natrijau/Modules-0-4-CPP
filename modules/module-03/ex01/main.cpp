@@ -17,6 +17,8 @@ int main()
 	scavtrap.takeDamage(50);
 	scavtrap.attack("ennemy");
 	scavtrap.gardeGate();
+	scavtrap.takeDamage(15000);
+	scavtrap.beRepaired(10);
 
 	return 0;
 }
