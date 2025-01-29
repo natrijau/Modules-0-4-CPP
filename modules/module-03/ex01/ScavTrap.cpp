@@ -9,6 +9,15 @@ ScavTrap::ScavTrap(std::string name)
 	std::cout << "ScavTrap " << _name << " created!" << std::endl;
 }
 
+ScavTrap::ScavTrap()
+:   ClapTrap()
+{
+    _hitPoint = 100;
+    _energiePoint = 50;
+    _attackDamage = 20;
+	std::cout << "ScavTrap " << _name << " created!" << std::endl;
+}
+
 void	ScavTrap::attack(const std::string& target)
 {
 	if (_energiePoint >= 1)
@@ -24,6 +33,22 @@ void	ScavTrap::attack(const std::string& target)
 void    ScavTrap::gardeGate()
 {
     std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& copy)
+{
+	*this = copy;
+	std::cout << "ScavTrap copy !" << std::endl;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap& fix)
+{
+	this->_attackDamage = fix._attackDamage;
+	this->_hitPoint = fix._hitPoint;
+	this->_energiePoint = fix._energiePoint;
+	this->_attackDamage = fix._attackDamage;
+	std::cout << "surcharge opereator '=' !" << std::endl;
+	return (*this);
 }
 
 ScavTrap::~ScavTrap()

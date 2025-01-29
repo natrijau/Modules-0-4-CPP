@@ -13,7 +13,11 @@ class ScavTrap : public ClapTrap
         void    gardeGate();
 
         ScavTrap(std::string name);
+        ScavTrap();
+		ScavTrap(const ScavTrap& copy);
         ~ScavTrap();
+
+		ScavTrap &operator=(const ScavTrap& n);
 };
 
 

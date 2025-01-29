@@ -6,6 +6,12 @@ ClapTrap::ClapTrap(std::string name)
 	std::cout << "ClapTrap " << _name << " created!" << std::endl;
 }
 
+ClapTrap::ClapTrap()
+:	_name("noname"), _hitPoint(10), _energiePoint(10), _attackDamage(0)
+{
+	std::cout << "ClapTrap " << _name << " created!" << std::endl;
+}
+
 ClapTrap::ClapTrap(const ClapTrap& copy)
 :	_name(copy._name), _hitPoint(copy._hitPoint), _energiePoint(copy._energiePoint), _attackDamage(copy._attackDamage)
 {
