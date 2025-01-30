@@ -9,10 +9,13 @@ class Cat : public Animal
 		/* data */
 	public:
 
-		void	makeSound();
+		void	makeSound() const;
 
 		Cat();
+		Cat(const Cat& copy);
 		~Cat();
+
+		Cat	&operator=(const Cat& n);
 };
 
 #endif

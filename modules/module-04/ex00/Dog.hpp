@@ -9,10 +9,12 @@ class Dog : public Animal
 		/* data */
 	public:
 
-		void	makeSound();
+		void	makeSound() const;
 
 		Dog();
+		Dog(const Dog& copy);
 		~Dog();
+		Dog	&operator=(const Dog& n);
 };
 
 #endif
