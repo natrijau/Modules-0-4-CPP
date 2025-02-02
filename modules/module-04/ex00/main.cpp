@@ -29,21 +29,14 @@ int main()
 	std::cout << std::endl;
 	
 	const WrongAnimal* Wanimal = new WrongCat();
-	const WrongCat* Wat = new WrongCat();
 
 	std::cout << std::endl;
 	std::cout << Wanimal->getType() << " " << std::endl;
 	Wanimal->makeSound();
 	std::cout << std::endl;
 
-	std::cout << std::endl;
-	std::cout << Wat->getType() << " " << std::endl;
-	Wat->makeSound();
-	std::cout << std::endl;
-
 
 	delete(Wanimal);
-	delete(Wat);
 	delete(pluto);
 	delete(meta);
 	delete(j);
