@@ -28,7 +28,6 @@ void	Character::equip(AMateria *m)
 			return;
 		}
 	}
-		
 }
 
 void	Character::unequip(int idx)
@@ -37,9 +36,9 @@ void	Character::unequip(int idx)
 		this->_inventory[idx] = NULL;
 }
 
-void	Character::use(int idx, Character &target)
+void	Character::use(int idx, ICharacter &target)
 {
-	if (idx < 4 && idx >= 0)
+	if (idx < 4 && idx >= 0 && this->_inventory[idx])
 		this->_inventory[idx]->use(target);
 }
 
@@ -50,7 +49,7 @@ Character	&Character::operator=(const Character& fix)
         for (int i = 0; i < 4; i++) {
             if (_inventory[i])
 				delete _inventory[i];
-            _inventory[i] = fix._inventory[i] ? fix._inventory[i]->clone() : NULL;
+            _inventory[i] = fix._inventory[i]->clone();
         }
     }
 	return (*this);
