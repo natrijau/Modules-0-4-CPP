@@ -10,6 +10,7 @@ class Ice : public	AMateria
 	public:
 		Ice();
 		Ice(const Ice& copy);
+		Ice(std::string const & type);
 		~Ice();
 
 		AMateria* clone() const;

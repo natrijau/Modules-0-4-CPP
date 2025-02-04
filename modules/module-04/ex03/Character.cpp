@@ -3,6 +3,10 @@
 Character::Character(std::string name)
 :	_name(name)
 {
+	for (size_t i = 0; i < 4; i++)
+		_inventory[i] = NULL;
+	for (size_t i = 0; i < 100; i++)
+		_floor[i] = NULL;
 	std::cout << "Constructor character called" << std::endl;
 }
 
@@ -24,7 +28,13 @@ void	Character::equip(AMateria *m)
 	{
 		if (this->_inventory[i] == NULL)
 		{
+			if(m == NULL)
+			{
+				std::cout << "Impossible to equip because Materia dont exist" << std::endl;
+				return ;
+			}
 			this->_inventory[i] = m;
+			std::cout << "equip successfull of " << m->getType() <<  std::endl; 
 			return;
 		}
 	}
@@ -33,6 +43,17 @@ void	Character::equip(AMateria *m)
 void	Character::unequip(int idx)
 {
 	if (idx < 4 && idx >= 0)
+	{
+		for(int i = 0; i < 100 ; i++)
+		{
+			if(_floor[i] == NULL)
+			{
+				_floor[i] = this->_inventory[idx];
+				break;
+			}
+		}
+	}
+	if (idx < 4 && idx >= 0)
 		this->_inventory[idx] = NULL;
 }
 
@@ -40,6 +61,8 @@ void	Character::use(int idx, ICharacter &target)
 {
 	if (idx < 4 && idx >= 0 && this->_inventory[idx])
 		this->_inventory[idx]->use(target);
+	else
+		std::cout << "Impossible to use because not Materia at index " << idx <<  std::endl;
 }
 
 Character	&Character::operator=(const Character& fix)
@@ -61,6 +84,11 @@ Character::~Character()
 	{
 		if (_inventory[i])
 			delete(_inventory[i]);
+	}
+	for(int i = 0; i < 100 ; i++)
+	{
+		if(_floor[i])
+			delete(_floor[i]);
 	}
 	std::cout << "Destructor character called" << std::endl;
 }

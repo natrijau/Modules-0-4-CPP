@@ -10,6 +10,7 @@ class Cure : public	AMateria
 	public:
 		Cure();
 		Cure(const Cure& copy);
+		Cure(std::string const & type);
 		~Cure();
 
 		AMateria* clone() const;

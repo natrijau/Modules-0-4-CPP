@@ -2,6 +2,8 @@
 
 MateriaSource::MateriaSource()
 {
+	for(size_t i = 0; i < 4; i++)
+		_inventory[i] = NULL;
 	std::cout << "Constructor MateriaSource called" << std::endl;
 }
 
@@ -27,7 +29,7 @@ MateriaSource::~MateriaSource()
 void	MateriaSource::learnMateria(AMateria* toCopy)
 {
 	if (!toCopy)
-		return ;	
+		return ;
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i] == NULL)
@@ -47,8 +49,6 @@ AMateria *MateriaSource::createMateria(const std::string &type)
 		{
 			if (this->_inventory[i]->getType() == type)
 				return (_inventory[i]->clone());
-			else
-				break;
 		}
 	}
 	return (NULL);

@@ -6,6 +6,12 @@ Ice::Ice()
 	std::cout << "Constructor Ice called" << std::endl;
 }
 
+Ice::Ice(std::string const & type)
+:	AMateria(type)
+{
+	std::cout << "Constructor assign type Ice called" << std::endl;
+}
+
 Ice::Ice(const Ice& copy)
 {
 	std::cout << "Constructor copy Ice called" << std::endl;
@@ -24,7 +30,7 @@ AMateria* Ice::clone() const
 
 void	Ice::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
 Ice	&Ice::operator=(const Ice& fix)

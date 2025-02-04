@@ -4,19 +4,21 @@
 #include	"ICharacter.hpp"
 #include	"AMateria.hpp"
 
+class	AMateria;
+
 class Character : public ICharacter
 {
 	private :
 
 		std::string	_name;
 		AMateria* 	_inventory[4];
-		//AMateria*	_floor[100];
+		AMateria*	_floor[100];
 
 	public:
 
 		Character(std::string name);
 		Character(const Character& copy);
-		~Character() {}
+		~Character();
 
 		std::string const & getName() const;
 		void equip(AMateria* m);

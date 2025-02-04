@@ -1,15 +1,21 @@
 #include	"AMateria.hpp"
 
 AMateria::AMateria()
-:	_type(NULL)
+:	_type("default")
 {
-	std::cout << "Constructor AMateria called" << std::endl;
+	std::cout << "Constructor AMateria default called" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& copy)
 {
 	std::cout << "Constructor copy AMateria called" << std::endl;
 	this->_type = copy._type;
+}
+
+AMateria::AMateria(std::string	const &type)
+{
+	std::cout << "Constructor to assign type AMateria called" << std::endl;
+	this->_type = type;
 }
 
 AMateria::~AMateria()
