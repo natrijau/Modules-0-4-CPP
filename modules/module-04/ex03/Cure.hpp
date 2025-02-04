@@ -1,7 +1,9 @@
 #ifndef	__CURE_HPP__
 #define	__CURE_HPP__
 
-class Cure
+#include	"AMateria.hpp"
+
+class Cure : public	AMateria
 {
 	private:
 		/* data */
@@ -10,6 +12,9 @@ class Cure
 		Cure(const Cure& copy);
 		~Cure();
 
+		AMateria* clone() const;
+		void use(ICharacter& target);
+		
 		Cure	&operator=(const Cure& fix);
 };
 
