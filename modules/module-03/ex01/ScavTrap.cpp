@@ -23,7 +23,6 @@ void	ScavTrap::attack(const std::string& target)
 	if (_energiePoint >= 1)
 	{
 		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
-		takeDamage(_attackDamage);
 		_energiePoint--;
 		return;
 	}
@@ -36,6 +35,7 @@ void    ScavTrap::gardeGate()
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy)
+:	ClapTrap(copy)
 {
 	*this = copy;
 	std::cout << "ScavTrap copy !" << std::endl;
