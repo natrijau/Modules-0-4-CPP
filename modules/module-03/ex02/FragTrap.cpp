@@ -24,6 +24,7 @@ FragTrap::~FragTrap()
 }
 
 FragTrap::FragTrap(const FragTrap& copy)
+:	ClapTrap(copy)
 {
 	*this = copy;
 	std::cout << "FragTrap copy !" << std::endl;
