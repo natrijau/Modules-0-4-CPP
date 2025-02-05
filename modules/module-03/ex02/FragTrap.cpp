@@ -42,5 +42,8 @@ FragTrap &FragTrap::operator=(const FragTrap& fix)
 
 void	FragTrap::highFivesGuys()
 {
-	std::cout << "Give me five" << std::endl;
+	if (_hitPoint > 0)
+		std::cout << "Give me five" << std::endl;
+	else
+	    std::cout << "FragTrap " << _name << " do not have enough life to switch to say 'Give me five'" << std::endl;
 }

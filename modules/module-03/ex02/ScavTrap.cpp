@@ -20,18 +20,21 @@ ScavTrap::ScavTrap()
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (_energiePoint >= 1)
+	if (_energiePoint >= 1 && _hitPoint > 0)
 	{
 		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
 		_energiePoint--;
 		return;
 	}
-	std::cout << "ClapTrap " << _name << " cannot attack, no energy or hit points left!" << std::endl;
+	std::cout << "ScavTrap " << _name << " cannot attack, no energy or hit points left!" << std::endl;
 }
 
 void    ScavTrap::gardeGate()
 {
-    std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
+	if (_hitPoint > 0)
+	    std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
+	else
+	    std::cout << "ScavTrap " << _name << " do not have enough life to switch to Gate Guardian mode" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy)
