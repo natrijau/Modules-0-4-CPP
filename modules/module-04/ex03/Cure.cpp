@@ -4,24 +4,24 @@
 Cure::Cure()
 :	AMateria("cure")
 {
-	std::cout << "Constructor Cure called" << std::endl;
+	// std::cout << "Constructor Cure called" << std::endl;
 }
 
 Cure::Cure(const Cure& copy)
 {
-	std::cout << "Constructor copy Cure called" << std::endl;
+	// std::cout << "Constructor copy Cure called" << std::endl;
 	this->_type = copy._type;
 }
 
 Cure::Cure(std::string const & type)
 :	AMateria(type)
 {
-	std::cout << "Constructor assign string type Cure called" << std::endl;
+	// std::cout << "Constructor assign string type Cure called" << std::endl;
 }
 
 Cure::~Cure()
 {
-	std::cout << "Destructor Cure called" << std::endl;
+	// std::cout << "Destructor Cure called" << std::endl;
 }
 
 AMateria* Cure::clone() const

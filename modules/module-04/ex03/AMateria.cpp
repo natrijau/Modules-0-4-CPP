@@ -3,24 +3,25 @@
 AMateria::AMateria()
 :	_type("default")
 {
-	std::cout << "Constructor AMateria default called" << std::endl;
+	// std::cout << "Constructor AMateria default called" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& copy)
 {
-	std::cout << "Constructor copy AMateria called" << std::endl;
+	// std::cout << "Constructor copy AMateria called" << std::endl;
 	this->_type = copy._type;
+	*this = copy;
 }
 
 AMateria::AMateria(std::string	const &type)
 {
-	std::cout << "Constructor to assign type AMateria called" << std::endl;
+	// std::cout << "Constructor to assign type AMateria called" << std::endl;
 	this->_type = type;
 }
 
 AMateria::~AMateria()
 {
-	std::cout << "Destructor AMateria called" << std::endl;
+	// std::cout << "Destructor AMateria called" << std::endl;
 }
 
 const std::string	&AMateria::getType() const

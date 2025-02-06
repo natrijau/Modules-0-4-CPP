@@ -3,24 +3,24 @@
 Ice::Ice()
 :	AMateria("ice")
 {
-	std::cout << "Constructor Ice called" << std::endl;
+	// std::cout << "Constructor Ice called" << std::endl;
 }
 
 Ice::Ice(std::string const & type)
 :	AMateria(type)
 {
-	std::cout << "Constructor assign type Ice called" << std::endl;
+	// std::cout << "Constructor assign type Ice called" << std::endl;
 }
 
 Ice::Ice(const Ice& copy)
 {
-	std::cout << "Constructor copy Ice called" << std::endl;
+	// std::cout << "Constructor copy Ice called" << std::endl;
 	this->_type = copy._type;
 }
 
 Ice::~Ice()
 {
-	std::cout << "Destructor Ice called" << std::endl;
+	// std::cout << "Destructor Ice called" << std::endl;
 }
 
 AMateria* Ice::clone() const

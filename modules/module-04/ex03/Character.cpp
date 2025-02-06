@@ -1,20 +1,31 @@
 #include	"Character.hpp"
 
-Character::Character(std::string name)
-:	_name(name)
+Character::Character()
+: 	ICharacter()
 {
+	_name = "default";
+	for (size_t i = 0; i < 4; i++)
+		_inventory[i] = NULL;
+	for (size_t i = 0; i < 100; i++)	
+		_floor[i] = NULL;
+	// std::cout << "Constructor default character called" << std::endl;
+}
+
+Character::Character(std::string name) : ICharacter()
+{
+	_name = name;
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 	for (size_t i = 0; i < 100; i++)
 		_floor[i] = NULL;
-	std::cout << "Constructor character called" << std::endl;
+	// std::cout << "Constructor character called" << std::endl;
 }
 
 Character::Character(const Character& copy)
 {
 	this->_name = copy._name;
 	*this = copy;
-	std::cout << "Constructor copy character called" << std::endl;
+	// std::cout << "Constructor copy character called" << std::endl;
 }
 
 const	std::string &Character::getName() const
@@ -30,11 +41,11 @@ void	Character::equip(AMateria *m)
 		{
 			if(m == NULL)
 			{
-				std::cout << "Impossible to equip because Materia dont exist" << std::endl;
+				std::cout << this->_name << ": Impossible to equip because the Materia does not exist" << std::endl;
 				return ;
 			}
 			this->_inventory[i] = m;
-			std::cout << "equip successfull of " << m->getType() <<  std::endl; 
+			std::cout << this->_name << ": Equip successfull of " << m->getType() <<  std::endl; 
 			return;
 		}
 	}
@@ -42,15 +53,18 @@ void	Character::equip(AMateria *m)
 
 void	Character::unequip(int idx)
 {
-	if (idx < 4 && idx >= 0)
+	if (idx > 3 || idx < 0)
 	{
-		for(int i = 0; i < 100 ; i++)
+		std::cout << "Impossible to unequip because Index its false" << std::endl;
+		return ;
+	}
+	for(int i = 0; i < 100 ; i++)
+	{
+		if(_floor[i] == NULL)
 		{
-			if(_floor[i] == NULL)
-			{
-				_floor[i] = this->_inventory[idx];
-				break;
-			}
+			_floor[i] = this->_inventory[idx];
+			std::cout << _name << ": "<< _inventory[idx]->getType() << " is successfully unequipped" << std::endl;
+			break;
 		}
 	}
 	if (idx < 4 && idx >= 0)
@@ -62,7 +76,7 @@ void	Character::use(int idx, ICharacter &target)
 	if (idx < 4 && idx >= 0 && this->_inventory[idx])
 		this->_inventory[idx]->use(target);
 	else
-		std::cout << "Impossible to use because not Materia at index " << idx <<  std::endl;
+		std::cout << this->_name << ": Impossible to use because not Materia at index " << idx <<  std::endl;
 }
 
 Character	&Character::operator=(const Character& fix)
@@ -74,6 +88,11 @@ Character	&Character::operator=(const Character& fix)
 				delete _inventory[i];
             _inventory[i] = fix._inventory[i]->clone();
         }
+        for (int i = 0; i < 4; i++) {
+            if (_floor[i])
+				delete _floor[i];
+            _floor[i] = fix._floor[i]->clone();
+        }		
     }
 	return (*this);
 }
@@ -83,12 +102,18 @@ Character::~Character()
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (_inventory[i])
+		{
+			std::cout << _name << ": delete _inventory " << _inventory[i]->getType() << std::endl;
 			delete(_inventory[i]);
+		}
 	}
 	for(int i = 0; i < 100 ; i++)
 	{
 		if(_floor[i])
+		{
+			std::cout << _name << ": delete _floor " << _floor[i]->getType() << std::endl;
 			delete(_floor[i]);
+		}
 	}
-	std::cout << "Destructor character called" << std::endl;
+	// std::cout << "Destructor character called" << std::endl;
 }

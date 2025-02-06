@@ -18,7 +18,7 @@ class AMateria
 		AMateria();
 		AMateria(const	AMateria& copy);
 		AMateria(std::string const & type);
-		virtual	~AMateria();
+		virtual ~AMateria();
 	
 		std::string const & getType() const; //Returns the materia type
 
