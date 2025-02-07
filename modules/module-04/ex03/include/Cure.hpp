@@ -3,6 +3,8 @@
 
 #include	"AMateria.hpp"
 
+class	ICharacter;
+
 class Cure : public	AMateria
 {
 	private:
@@ -11,10 +13,10 @@ class Cure : public	AMateria
 		Cure();
 		Cure(const Cure& copy);
 		Cure(std::string const & type);
-		~Cure();
+		virtual ~Cure();
 
-		AMateria* clone() const;
-		void use(ICharacter& target);
+		virtual AMateria* clone() const;
+		virtual void use(ICharacter& target);
 		
 		Cure	&operator=(const Cure& fix);
 };

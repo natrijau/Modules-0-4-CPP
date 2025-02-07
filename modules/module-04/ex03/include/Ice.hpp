@@ -3,6 +3,8 @@
 
 #include	"AMateria.hpp"
 
+class	ICharacter;
+
 class Ice : public	AMateria
 {
 	private:
@@ -11,10 +13,10 @@ class Ice : public	AMateria
 		Ice();
 		Ice(const Ice& copy);
 		Ice(std::string const & type);
-		~Ice();
+		virtual ~Ice();
 
-		AMateria* clone() const;
-		void use(ICharacter& target);
+		virtual AMateria* clone() const;
+		virtual void use(ICharacter& target);
 
 		Ice	&operator=(const Ice& fix);
 };

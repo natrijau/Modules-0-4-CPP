@@ -8,41 +8,59 @@
 
 int	main()
 {
+	// Materia source created
 	IMateriaSource* src = new MateriaSource();
+	
+	//Learned Materia Ice
 	src->learnMateria(new Ice());
-	// src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
+
+	//News characters
 	ICharacter* me = new Character("me");
+	ICharacter* bob = new Character("bob");
+
+	//Init Materia
 	AMateria* tmp;
 
+	//creat Materia Ice in array inventory of class Materia
 	tmp = src->createMateria("ice");
+	// me equip with Materia tmp = ICE
 	me->equip(tmp);
+	
+	//impossible to creat cure because dont have learned that
 	tmp = src->createMateria("cure");
+	// so impossible to equip
 	me->equip(tmp);
+
+	//Learned Materia Cure
 	src->learnMateria(new Cure());
-	tmp = src->createMateria("cure");
+
+	//Not creat a fail materia type
+	tmp = src->createMateria("s");
+	// so impossible to equip
 	me->equip(tmp);
-	ICharacter* bob = new Character("bob");
+	
 	me->use(0, *bob);
 	me->use(1, *bob);
 	me->unequip(1);
 	me->use(1, *bob);
 
 	ICharacter* test = new Character("test");
-	AMateria* tmp2;
 
-	tmp2 = src->createMateria("ice");
 	for (size_t i = 0; i < 100; i++)
 	{
-		test->equip(tmp2);
+		tmp = src->createMateria("ice");
+		test->equip(tmp);
 		test->unequip(0);
 	}
-	
-	// test->equip(tmp2);
 	test->use(0, *me);
 
 	delete bob;
 	delete me;
+	delete test;
 	delete src;
-	// delete test;
 	return (0);
 }

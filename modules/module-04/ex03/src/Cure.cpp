@@ -8,9 +8,9 @@ Cure::Cure()
 }
 
 Cure::Cure(const Cure& copy)
+:	AMateria(copy)
 {
 	// std::cout << "Constructor copy Cure called" << std::endl;
-	this->_type = copy._type;
 }
 
 Cure::Cure(std::string const & type)

@@ -1,7 +1,6 @@
 #include	"MateriaSource.hpp"
 
 MateriaSource::MateriaSource()
-// :	IMateriaSource()
 {
 	for(size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
@@ -9,16 +8,10 @@ MateriaSource::MateriaSource()
 }
 
 MateriaSource::MateriaSource(const MateriaSource& copy)
-// :	IMateriaSource()
 {
 	// std::cout << "Constructor copy MateriaSource called" << std::endl;
     for (int i = 0; i < 4; i++)
-	{
-        if (copy._inventory[i])
-            _inventory[i] = copy._inventory[i]->clone();
-        else
-            _inventory[i] = NULL;
-    }
+		_inventory[i] = copy._inventory[i] ? copy._inventory[i]->clone() : NULL;
 }
 
 MateriaSource::~MateriaSource()
@@ -40,15 +33,22 @@ void	MateriaSource::learnMateria(AMateria* toCopy)
 		if (this->_inventory[i] == NULL)
 		{
 			std::cout << "Materia " << toCopy->getType() << " learned" << std::endl;
-			this->_inventory[i] = toCopy;
+			this->_inventory[i] = toCopy->clone();
+			delete toCopy;
 			return ;
 		}
 	}
+	delete toCopy;
 	std::cout << "Inventory full, cannot learn more Materia!" << std::endl;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type)
 {
+	if (type != "cure" && type != "ice")
+	{
+		std::cout << "Impossible to creat Materia " << type << " because this Materia type does not exist" << std::endl;
+		return (NULL);
+	}
 	for (int i = 3; i >= 0; i--)
 	{
 		if(this->_inventory[i])
