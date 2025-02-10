@@ -13,10 +13,10 @@ class Cure : public	AMateria
 		Cure();
 		Cure(const Cure& copy);
 		Cure(std::string const & type);
-		virtual ~Cure();
+		~Cure();
 
-		virtual AMateria* clone() const;
-		virtual void use(ICharacter& target);
+		AMateria* clone() const;
+		void use(ICharacter& target);
 		
 		Cure	&operator=(const Cure& fix);
 };

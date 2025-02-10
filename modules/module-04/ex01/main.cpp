@@ -10,7 +10,7 @@ int	main()
 	delete j;
 	delete i;
 
-	std::cout << "Creating an array of Animals..." << std::endl;
+	std::cout << std::endl << "Creating an array of Animals..." << std::endl;
 	Animal* animals[6];
 
 	for (int i = 0; i < 3; ++i)
@@ -19,7 +19,7 @@ int	main()
 	for (int i = 3; i < 6; ++i)
 		animals[i] = new Cat();
 
-	std::cout << "Deleting the array of Animals..." << std::endl;
+	std::cout << std::endl << "Deleting the array of Animals..." << std::endl;
 	for (int i = 0; i < 6; ++i)
 		delete animals[i];
 
