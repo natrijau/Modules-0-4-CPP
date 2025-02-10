@@ -1,6 +1,6 @@
 NAME = materia
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 SRCDIR = src
 INCDIR = include
 OBJDIR = obj
@@ -18,12 +18,12 @@ DEP = $(OBJ:.o=.d)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -MMD -MP -I$(INCDIR) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -I$(INCDIR) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)
